@@ -42,7 +42,7 @@ namespace calculatricAPP
 
         private void btn_0_Click(object sender, EventArgs e)
         {
-            input.Text += 0; 
+            cursor("0");
         }
 
         private void btn_1_Click(object sender, EventArgs e)
