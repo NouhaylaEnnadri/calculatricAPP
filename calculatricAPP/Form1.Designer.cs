@@ -447,7 +447,6 @@
             this.input.PlaceholderText = "0";
             this.input.Size = new System.Drawing.Size(422, 87);
             this.input.TabIndex = 2;
-            this.input.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
