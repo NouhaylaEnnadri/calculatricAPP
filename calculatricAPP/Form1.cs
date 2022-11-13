@@ -1,4 +1,5 @@
 using System;
+using System.DirectoryServices;
 using System.Reflection;
 
 namespace calculatricAPP
@@ -6,11 +7,11 @@ namespace calculatricAPP
     public partial class Form1 : Form
     {
 
-/*
-        private char op ; 
-        private string op1 = "" ;
-        private string op2 ="";
-        int result; */
+
+        private char op ;   //where we are going to store the operator
+        private string op1 = "" ;   //the first variable to be entered
+        private string op2 ="";    //the second var to be entered
+        int result;                 // the result of the operation 
 
         public Form1()
         {
@@ -21,29 +22,55 @@ namespace calculatricAPP
 
         private void div_button_Click(object sender, EventArgs e)
         {
-            cursor("/");
+            op = '/';
+            op1 = Input.Text;
+            Input.Clear();  // clear the input so we can store the op2
+            resultLabel.Text = op1 + op;   //where we are going to print the result
+           
         }
 
         private void minus_button_Click(object sender, EventArgs e)
         {
-            cursor("-");
+            op = '-';
+            op1 = Input.Text;
+            Input.Text = "";
+            resultLabel.Text = op1 + op;
         }
 
         private void mul_button_Click(object sender, EventArgs e)
         {
-            cursor("x");
+            op = 'x';
+            op1 = Input.Text;
+            Input.Text = "";
+            resultLabel.Text = op1 + op;
         }
 
         private void plus_btn_Click(object sender, EventArgs e)
         {
-          
+            op = '+';
+            op1 = Input.Text;
+            Input.Text = "";
+            resultLabel.Text = op1 + op;
+           
 
         }
 
         private void equal_btn_Click(object sender, EventArgs e)
         {
 
+            op2 = Input.Text;     
+            result  =   Calculation(op1, op, op2); 
+            Input.Text = result.ToString();     //converting the intiger to string then printing it in the input
+            resultLabel .Text = op1 + op + op2 + '='; // printing the operation 
+          
+            op = '\0';      // clearing the operator so we can store the next one
+            result = 0;
+            op1 = "";
+            op2 = "";
+          
+
         }
+        
         #endregion
 
         #region numbers
@@ -116,14 +143,14 @@ namespace calculatricAPP
 
         {
             int index = Input.SelectionStart;
-            if (Input.Text.Length == Input.SelectionStart)
-                Input.Text = Input.Text.Remove(Input.Text.Length-1); //delete from the index length-1
+            if (Input.Text.Length == Input.SelectionStart) // if the index is at the end of the string
+                Input.Text = Input.Text.Remove(Input.Text.Length-1); //delete the last char
             
             else
             
-                Input.Text = Input.Text.Remove(Input.SelectionStart - 1,1);
+                Input.Text = Input.Text.Remove(Input.SelectionStart - 1,1); //delete one char after the cursor position
 
-                Input.SelectionStart = index;
+                Input.SelectionStart = index; // put the index back to it's initial position
                 Input.Focus();
 
 
@@ -139,13 +166,32 @@ namespace calculatricAPP
 
         private void cursor(string value) {
 
-            int index = Input.SelectionStart;
+            int index = Input.SelectionStart;  //storing the position of the index
            
-            Input.Text = Input.Text.Insert(Input.SelectionStart, value);
-            Input.SelectionStart = value.Length + index;
-            Input.Focus();
+            Input.Text = Input.Text.Insert(Input.SelectionStart, value); //inserting the value entered in the index position 
+            Input.SelectionStart = value.Length + index; // adding the length of the new value to increment the index position for the next entry  
+            Input.Focus(); 
 
 
+
+        }
+        
+        private int Calculation(string op1, char op,string  op2)
+        {
+            switch (op)
+            {
+
+                case '+':
+                    return int.Parse(op1) + int.Parse(op2);
+                case 'x':
+                    return int.Parse(op1) * int.Parse(op2);
+                case '-':
+                    return int.Parse(op1) - int.Parse(op2);
+                case '/':
+                    return int.Parse(op1) / int.Parse(op2);
+                    default:  return 0; 
+                    break; 
+            }
         }
         #endregion
 
