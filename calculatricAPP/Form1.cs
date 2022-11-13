@@ -5,6 +5,13 @@ namespace calculatricAPP
 {
     public partial class Form1 : Form
     {
+
+/*
+        private char op ; 
+        private string op1 = "" ;
+        private string op2 ="";
+        int result; */
+
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +36,8 @@ namespace calculatricAPP
 
         private void plus_btn_Click(object sender, EventArgs e)
         {
-            cursor("+");
+          
+
         }
 
         private void equal_btn_Click(object sender, EventArgs e)
@@ -95,8 +103,8 @@ namespace calculatricAPP
         #region del_ce methods
         private void CE_btn_Click(object sender, EventArgs e)
         {
-            input.Clear();
-            input.Focus();
+            Input.Clear();
+            Input.Focus();
         }
 
         private void c_btn_Click(object sender, EventArgs e)
@@ -107,16 +115,16 @@ namespace calculatricAPP
         private void del_btn_Click(object sender, EventArgs e)
 
         {
-            int index = input.SelectionStart;
-            if (input.Text.Length == input.SelectionStart)
-                input.Text = input.Text.Remove(input.Text.Length-1); //delete from the index length-1
+            int index = Input.SelectionStart;
+            if (Input.Text.Length == Input.SelectionStart)
+                Input.Text = Input.Text.Remove(Input.Text.Length-1); //delete from the index length-1
             
             else
             
-                input.Text = input.Text.Remove(input.SelectionStart - 1,1);
+                Input.Text = Input.Text.Remove(Input.SelectionStart - 1,1);
 
-                input.SelectionStart = index;
-                input.Focus();
+                Input.SelectionStart = index;
+                Input.Focus();
 
 
         }
@@ -131,14 +139,29 @@ namespace calculatricAPP
 
         private void cursor(string value) {
 
-            int index = input.SelectionStart;
+            int index = Input.SelectionStart;
            
-            input.Text = input.Text.Insert(input.SelectionStart, value);
-            input.SelectionStart = value.Length + index;
-            input.Focus();
+            Input.Text = Input.Text.Insert(Input.SelectionStart, value);
+            Input.SelectionStart = value.Length + index;
+            Input.Focus();
 
 
         }
         #endregion
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Input_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
