@@ -132,6 +132,7 @@ namespace calculatricAPP
         {
             Input.Clear();
             Input.Focus();
+            resultLabel.Text = ""; 
         }
 
         private void c_btn_Click(object sender, EventArgs e)
